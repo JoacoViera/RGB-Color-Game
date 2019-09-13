@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #D3CCE3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+header .tittle{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 1em;
+}
+
+
+.options .containerBtns {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.options .containerBtns button{
+    margin: 0 2em;
+
+    border-radius:15px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:12px 16px;
+	text-decoration:none;
+
+}
+.options .containerBtns button:hover{
+    background-color: #505739;
+    color: white;
+}
+
+.game .containerColours{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.game .containerColours .color{
+    border: #333029 solid;
+    border-radius: 5px;
+    width: 30%;
+    height: 2em;
+    margin: 1em 2em;
+}
+
