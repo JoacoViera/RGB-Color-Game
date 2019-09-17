@@ -7,19 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RGB Color Game</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="js/main.js">
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
     <header>
         <h1 class="tittle">RBG COLOR GAME</h1>
+        <div class="containerColor">
+            <h3>rbg(<span class="chosenColor"></span>)</h3>
+            <p>Which color is this ?</p>
+        </div>
     </header>
 
     <section class="options">
         <div class="containerBtns" id="stripe">
-            <button class="btn selected" id="reset">
-                New Colors
-            </button>
             <button class="btn" id="easyBtn">
                 Easy
             </button>

@@ -8,6 +8,25 @@ body{
     background: #D3CCE3;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header .containerColor{
+    /* background: #333029; */
+    margin-top: 3em;
+}
+
+header h3,
+header p{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 1em;
 
 }
 
@@ -15,6 +34,7 @@ header .tittle{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 1em;
+    animation: textColor 4s ease infinite;
 }
 
 
@@ -41,9 +61,10 @@ header .tittle{
 	text-decoration:none;
 
 }
-.options .containerBtns button:hover{
-    background-color: #505739;
+
+.options .selected {
     color: white;
+    background-color: orangered;
 }
 
 .game .containerColours{
@@ -59,7 +80,21 @@ header .tittle{
     border: #333029 solid;
     border-radius: 5px;
     width: 30%;
-    height: 2em;
-    margin: 1em 2em;
+    height: 5em;
+    margin: 1em 10px;
+    background: white;
 }
 
+
+
+@keyframes textColor {
+    0% {
+      color: red;
+    }
+    50% {
+      color: blue;
+    }
+    100% {
+      color:green;
+    }
+  }
