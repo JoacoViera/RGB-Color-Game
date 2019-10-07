@@ -1,8 +1,9 @@
 window.addEventListener("load", () => {
-    alert('Not finished yet !');
+    //alert('Not finished yet !');
 
-    var easyBtn = document.querySelector("#easyBtn");
-    var hardBtn = document.querySelector("#hardBtn");
+    let easyBtn = document.querySelector("#easyBtn");
+    let hardBtn = document.querySelector("#hardBtn");
+    const boxes = document.querySelectorAll('.color');
 
     /**
      * A RGB color
@@ -17,6 +18,14 @@ window.addEventListener("load", () => {
         this.b=0;
     };
 
+    let colors = [];
+
+    const disableBoxes = () => {
+        for (const box of boxes) {
+            box.removeEventListener("click", function(){});
+        }
+    }
+
     // This value will be 3 or 6
     let numBoxes = 6;
 
@@ -28,28 +37,8 @@ window.addEventListener("load", () => {
     easyBtn.addEventListener("click", function(){
         hardBtn.classList.remove("selected");
         easyBtn.classList.add("selected");
-        numBoxes = 3;
-
-        const colors = generateRandomColores(numBoxes);
-
-        const boxes = document.querySelectorAll('.color');
-        console.log(boxes.length);
-        let cont = 0;
-        for (const box of boxes) {
-            if(cont >=3){
-                boxes[cont].style.display = 'none';
-            }else{
-                let thisColor = colors[cont];
-                const r = thisColor.r;
-                const g = thisColor.g;
-                const b = thisColor.b;
-                boxes[cont].style.background = "rgba(" +r+","+g+","+b+")"; 
-            }
-            cont++;
-        }
-
-        const chosenColor = colors[Math.floor(Math.random() * 3)];
-        document.querySelector('.chosenColor').textContent = chosenColor.r + ',' + chosenColor.g + ',' + chosenColor.b ;
+        let chosenColor = colorDivs(3);
+        rightColor(boxes,chosenColor,3);
     });
 
     /**
@@ -59,25 +48,7 @@ window.addEventListener("load", () => {
     hardBtn.addEventListener("click", function(){
         easyBtn.classList.remove("selected");
         hardBtn.classList.add("selected");
-        numBoxes = 6;
-
-        const colors = generateRandomColores(numBoxes);
-        const boxes = document.querySelectorAll('.color');
-
-        for (const box of boxes) {
-            box.style.display = 'block';
-        }
-
-        for (let iterator = 0; iterator < boxes.length; iterator++) {
-            let thisColor = colors[iterator];
-            const r = thisColor.r;
-            const g = thisColor.g;
-            const b = thisColor.b;
-            boxes[iterator].style.background = "rgba(" +r+","+g+","+b+")"; 
-        }
-
-        const chosenColor = colors[Math.floor(Math.random() * 6)];
-        document.querySelector('.chosenColor').textContent = chosenColor.r + ',' + chosenColor.g + ',' + chosenColor.b;
+        let chosenColor = colorDivs(6);
     });
 
     /**
@@ -85,7 +56,7 @@ window.addEventListener("load", () => {
      * @param {number of boxes that we want to put random colors} boxesNumber 
      */
     const generateRandomColores = (boxesNumber) => {
-        let colors = [];
+        colors = [];
         for (let iterator = 0; iterator < boxesNumber; iterator++) {
             const newColor = new color(0,0,0);
             newColor.r = Math.floor(Math.random() * 256);
@@ -97,10 +68,58 @@ window.addEventListener("load", () => {
     };
 
     //Listener for the boxes
-    const boxes = document.querySelectorAll('.color');
-    boxes[0].addEventListener("click", function(){
-        boxes[0].style.display = 'none';
-    });
+    const rightColor = (boxes,chosenColorPoistion,numberOfColors) =>{
+        if(numberOfColors===3){
+            let cont = 0;
+            for (const box of boxes) {
+                box.addEventListener("click", function(){
+                    let chosenColor = chosenColorPoistion;
+                    if(colors[cont].r == chosenColor.r && colors[cont].g == chosenColor.g && colors[cont].b == chosenColor.b){
+                        document.body.style.backgroundColor = "green";
+                        disableBoxes();
+                        return;
+                    }
+                    else{
+                        box.style.display = 'none';
+                        cont++;
+                    }
+                    if(cont === 2){
+                        document.body.style.backgroundColor = "red";
+                        disableBoxes();
+                        return;
+                    }
+                });
+            }
+        }
+    }
+    
+
+    /**
+     * 
+     * @param {*} numberOfColors 
+     */
+    const colorDivs = (numberOfColors) =>{
+        const colors = generateRandomColores(numberOfColors);
+        let cont = 0;
+        for (const box of boxes) {
+            if(cont >=3 && numberOfColors === 3){
+                boxes[cont].style.display = 'none';
+            }else{
+                let thisColor = colors[cont];
+                const r = thisColor.r;
+                const g = thisColor.g;
+                const b = thisColor.b;
+                boxes[cont].style.background = "rgba(" +r+","+g+","+b+")"; 
+                boxes[cont].style.display = 'block';
+            }
+            cont++;
+        }
+        const chosenColorPoistion = Math.floor(Math.random() * numberOfColors);
+        const chosenColor = colors[chosenColorPoistion];
+        document.querySelector('.chosenColor').textContent = chosenColor.r + ',' + chosenColor.g + ',' + chosenColor.b ;
+        document.querySelector('.correcto').style.background = "rgba("+chosenColor.r+","+chosenColor.g+","+chosenColor.b+")";
+        return chosenColor;
+    }
 
 
 
