@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-    //alert('Not finished yet !');
+    alert('Not finished yet !');
 
     let easyBtn = document.querySelector("#easyBtn");
     let hardBtn = document.querySelector("#hardBtn");
